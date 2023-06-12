@@ -53,6 +53,10 @@ final class YouTubePlayerWebView: WKWebView {
                 }
                 // No media types requiring user action for playback
                 configuration.mediaTypesRequiringUserActionForPlayback = []
+                
+                let dropSharedWorkersScript = WKUserScript(source: "delete window.SharedWorker;", injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
+                configuration.userContentController.addUserScript(dropSharedWorkersScript)
+                
                 // Return configuration
                 return configuration
             }()
